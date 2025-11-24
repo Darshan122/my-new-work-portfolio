@@ -1,56 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    Fore more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-  -->
-<!--  <base href="/">-->
   <base href="$FLUTTER_BASE_HREF">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-<!--  <link rel="stylesheet" href="loader.css">-->
+  <meta name="description" content="Darshan Portfolio">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="web_portfolio">
+  <meta name="apple-mobile-web-app-title" content="Darshan Portfolio">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>web_portfolio</title>
+  <title>Darshan Portfolio</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Simple loader styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-family: Arial, sans-serif;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-  <div id="loader">
-    <div class="lds-circle"><div></div></div>
-  </div>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js" ></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js');
-      });
-    }
-  </script>
-  <script>
-    head.js("main.dart.js?version=3", function() {
-      document.getElementById('loader').remove();
+<div id="loader">
+  <div class="loading-spinner"></div>
+</div>
+
+<script>
+  window.addEventListener('load', function(ev) {
+    console.log('Loading Flutter app...');
+
+    // Download main.dart.js
+    _flutter.loader.loadEntrypoint({
+      serviceWorker: {
+        serviceWorkerVersion: serviceWorkerVersion,
+      }
+    }).then(function(engineInitializer) {
+      console.log('Engine initializing...');
+      return engineInitializer.initializeEngine();
+    }).then(function(appRunner) {
+      console.log('Running app...');
+      document.getElementById('loader').style.display = 'none';
+      return appRunner.runApp();
+    }).catch(function(error) {
+      console.error('Flutter loading failed:', error);
+      document.getElementById('loader').innerHTML = 'Failed to load app. Check console.';
     });
-  </script>
-  <!-- <script src="" type="application/javascript"
-  onendload="document.getElementById('loader').remove();"></script> -->
+  });
+</script>
+
+<script src="flutter.js" defer></script>
 </body>
 </html>
