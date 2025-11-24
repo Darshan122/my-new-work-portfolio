@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Flutter
@@ -25,13 +25,17 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter Web
-        run: flutter build web --release --base-href /my-new-work-portfolio/
+        run: |
+          echo "Building Flutter web app..."
+          flutter build web --release --base-href /my-new-work-portfolio/
+          echo "Build completed!"
+          ls -la build/web/
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
 
@@ -44,4 +48,8 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
+
+      - name: Show deployment URL
+        run: |
+          echo "Your site is deployed at: ${{ steps.deployment.outputs.page_url }}"
