@@ -16,7 +16,8 @@ jobs:
           channel: 'stable'
 
       - run: flutter pub get
-      - run: flutter build web --release --base-href /my-new-work-portfolio/ --web-renderer html
+#      - run: flutter build web --release --base-href /my-new-work-portfolio/ --web-renderer html
+      - run: flutter build web --release --base-href /my-new-work-portfolio/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
