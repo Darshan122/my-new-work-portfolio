@@ -35,7 +35,7 @@ flutter:
   assets:
     - assets/
     - assets/cv/
-    - assets/ESH image/  # Fixed typo (space removed)
+    - assets/ESH_image/  # Fixed typo (space removed)
     - assets/UltraRays_image/
     - assets/UltraRays_Business/
     - assets/cv/Darshan_Zalavadiya_Resume.pdf
