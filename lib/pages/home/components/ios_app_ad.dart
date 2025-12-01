@@ -238,7 +238,7 @@ class _IosAppAdState extends State<IosAppAd> {
   Widget _buildMobileView() {
     return Column(
       children: apps.map((app) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30.0),
+        padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 20),
         child: Column(
           children: [
             _buildImage(app, 300),

@@ -30,7 +30,7 @@ class Header extends StatelessWidget {
         minWidth: width,
         defaultScale: false,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 0.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

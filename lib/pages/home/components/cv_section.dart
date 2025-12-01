@@ -150,11 +150,11 @@ class CvSection extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   gridDelegate: ResponsiveGridDelegate(
                     mainAxisSpacing: 20.0,
-                    crossAxisSpacing: 20.0,
+                    crossAxisSpacing: 0.0,
                     maxCrossAxisExtent: ScreenHelper.isTablet(context) ||
                             ScreenHelper.isMobile(context)
                         ? constraints.maxWidth / 2.0
-                        : 250.0,
+                        : 260.0,
                     // Hack to adjust child height
                     childAspectRatio: ScreenHelper.isDesktop(context)
                         ? 1
